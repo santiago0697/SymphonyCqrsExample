@@ -6,4 +6,5 @@ tactician:
     commandbus:
         read:
             middleware:
+                - middleware.example_attributes
                 - tactician.middleware.command_handler

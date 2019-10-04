@@ -17,3 +17,11 @@ services:
             - "@tactician.commandbus.read"
         tags: 
             - {"name": "controller.service_arguments"}
+
+    handler.get_user:
+        class: App\Domain\QueryHandler\GetUserHandler
+        tags:
+            - {"name": "tactician.handler", "command": App\Domain\Query\GetUser}
+
+    middleware.example_attributes:
+        class: App\Domain\Middleware\ExampleAttributesMiddleware

@@ -7,8 +7,9 @@ use App\Domain\Repository\UserRepository;
 use App\Domain\Model\User;
 use App\Domain\Exception\EntityNotFoundException;
 
-abstract class UserRepositoryTest extends TestCase {
-    abstract function getRepository() : UserRepository;
+abstract class UserRepositoryTest extends TestCase
+{
+    abstract public function getRepository() : UserRepository;
 
     public function testGetUser()
     {

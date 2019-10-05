@@ -11,5 +11,10 @@ tactician:
         write:
             middleware:
                 - tactician.middleware.command_handler
+        async_write:
+            middleware:
+                - middleware.amqp
+                - tactician.middleware.command_handler
+
 
         

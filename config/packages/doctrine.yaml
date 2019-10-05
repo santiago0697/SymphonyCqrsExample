@@ -1,0 +1,10 @@
+doctrine:
+    dbal:
+        connections:
+            curso:
+                driver: 'pdo_mysql'
+                dbname: 'curso'
+                user: 'root'
+                password: 'root'
+                host: '127.0.0.1'
+                port: 3306

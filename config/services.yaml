@@ -21,26 +21,46 @@ services:
     controller.put_user:
         class: App\Controller\PutUserController
         arguments:
-            - "@tactician.commandbus.write"
+            - "@tactician.commandbus.async_write"
         tags:
             - {"name": "controller.service_arguments"}
 
     handler.get_user:
         class: App\Domain\QueryHandler\GetUserHandler
         arguments:
-            - "@repository.user.in_memory"
+            - "@repository.users"
         tags:
             - {"name": "tactician.handler", "command": App\Domain\Query\GetUser}
 
     handler.put_user:
         class: App\Domain\CommandHandler\PutUserHandler
         arguments:
-            - "@repository.user.in_memory"
+            - "@repository.users"
         tags:
             - {"name": "tactician.handler", "command": App\Domain\Command\PutUser}
 
     middleware.example_attributes:
         class: App\Domain\Middleware\ExampleAttributesMiddleware
 
+    middleware.amqp:
+        class: App\Amqp\Middleware\AmqpMiddleware
+        arguments: ["@connection.amqp"]
+
     repository.user.in_memory:
         class: App\Domain\Repository\InMemoryUserRepository
+
+    repository.dbal.users:
+        class: App\Dbal\DbalUserRepository
+        arguments: ['@doctrine.dbal.curso_connection']
+
+    repository.users:
+        alias: repository.dbal.users
+
+    connection.amqp:
+        class: App\Amqp\Connection
+    
+    console.command_consumer:
+        class: App\Amqp\Console\CommandConsumer
+        arguments: ["@connection.amqp", "@tactician.commandbus.write"]
+        tags:
+            - {"name": "console.command", "command": "amqp:consume"}

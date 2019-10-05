@@ -5,14 +5,17 @@
         "php": "^7.1.3",
         "ext-ctype": "*",
         "ext-iconv": "*",
+        "doctrine/dbal": "^2.9",
+        "doctrine/doctrine-bundle": "*",
         "league/tactician-bundle": "^1.1",
+        "php-amqplib/php-amqplib": "^2.10",
+        "php-pm/httpkernel-adapter": "*",
+        "php-pm/php-pm": "*",
         "symfony/console": "4.3.*",
         "symfony/dotenv": "4.3.*",
         "symfony/flex": "^1.3.1",
         "symfony/framework-bundle": "4.3.*",
-        "symfony/yaml": "4.3.*",
-        "php-pm/php-pm":"*",
-        "php-pm/httpkernel-adapter": "*"
+        "symfony/yaml": "4.3.*"
     },
     "require-dev": {
         "phpunit/phpunit": "*"

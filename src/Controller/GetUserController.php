@@ -1,12 +1,13 @@
 <?php
+
 namespace App\Controller;
 
-use Symfony\Component\HttpFoundation\Request;
-use League\Tactician\CommandBus;
 use App\Domain\Query\GetUser;
+use League\Tactician\CommandBus;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Request;
 
-class GetUserController 
+class GetUserController
 {
     private $commandBus;
 
@@ -19,10 +20,10 @@ class GetUserController
     {
         $query = new GetUser($request->get('id'));
         $user = $this->commandBus->handle($query);
+
         return new JsonResponse([
             'id' => $user->getId(),
-            'attr' => $user->attributes
+            'attr' => $user->attributes,
         ]);
     }
 }
-

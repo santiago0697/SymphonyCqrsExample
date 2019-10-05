@@ -1,11 +1,14 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace App\Domain\Model;
 
 class User
 {
-    private $id;
     public $attributes = [];
+    private $id;
+    private $name;
 
     public function __construct(string $id)
     {
@@ -17,4 +20,13 @@ class User
         return $this->id;
     }
 
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    public function setName(string $name)
+    {
+        $this->name = $name;
+    }
 }

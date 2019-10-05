@@ -8,3 +8,8 @@ tactician:
             middleware:
                 - middleware.example_attributes
                 - tactician.middleware.command_handler
+        write:
+            middleware:
+                - tactician.middleware.command_handler
+
+        

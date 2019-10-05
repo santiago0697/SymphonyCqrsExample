@@ -3,7 +3,6 @@
 namespace App\Domain\QueryHandler;
 
 use App\Domain\Query\GetUser;
-use App\Domain\Model\User;
 use App\Domain\Repository\UserRepository;
 
 class GetUserHandler
@@ -18,7 +17,7 @@ class GetUserHandler
     public function handle(GetUser $getUser)
     {
         return $this
-                ->userRepository
-                ->findUserById($getUser->getId());
+            ->userRepository
+            ->findUserById($getUser->getId());
     }
 }

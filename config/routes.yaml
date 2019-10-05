@@ -2,3 +2,8 @@ get_user:
     path: /users/{id}
     controller: controller.get_user
     methods: ["GET"]
+
+put_user:
+    path: /users/{id}
+    controller: controller.put_user
+    methods: ["PUT"]

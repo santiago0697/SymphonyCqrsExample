@@ -18,10 +18,29 @@ services:
         tags: 
             - {"name": "controller.service_arguments"}
 
+    controller.put_user:
+        class: App\Controller\PutUserController
+        arguments:
+            - "@tactician.commandbus.write"
+        tags:
+            - {"name": "controller.service_arguments"}
+
     handler.get_user:
         class: App\Domain\QueryHandler\GetUserHandler
+        arguments:
+            - "@repository.user.in_memory"
         tags:
             - {"name": "tactician.handler", "command": App\Domain\Query\GetUser}
 
+    handler.put_user:
+        class: App\Domain\CommandHandler\PutUserHandler
+        arguments:
+            - "@repository.user.in_memory"
+        tags:
+            - {"name": "tactician.handler", "command": App\Domain\Command\PutUser}
+
     middleware.example_attributes:
         class: App\Domain\Middleware\ExampleAttributesMiddleware
+
+    repository.user.in_memory:
+        class: App\Domain\Repository\InMemoryUserRepository
